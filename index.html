@@ -1,199 +1,117 @@
-<!-- هذا هو النموذج النهائي المحسن بصرياً مع كافة الحقول المطلوبة والرسائل التفاعلية -->
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>بطاقة الالتزام للحكم</title>
+  <title>تسجيل حكم جديد</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      direction: rtl;
-      background: linear-gradient(to right, #f7f9fc, #ffffff);
-      margin: 20px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      border: 1px solid #000;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      overflow: hidden;
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 350px;
     }
 
-    th, td {
-      border: 1px solid #000;
-      padding: 8px;
-      font-size: 14px;
-      vertical-align: middle;
-    }
-
-    th {
-      background-color: #f0f0f0;
+    .form-container h3 {
+      margin-bottom: 20px;
+      color: #333;
       text-align: center;
     }
 
-    input, textarea, select {
-      width: 98%;
-      padding: 4px;
-      font-size: 14px;
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: #007BFF;
-      background-color: #f0f8ff;
-      outline: none;
-    }
-
-    .section-title {
-      background-color: #ddd;
-      font-weight: bold;
-      text-align: center;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007BFF;
+      width: 100%;
+      background-color: #0066cc;
       color: #fff;
       border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
       cursor: pointer;
-      position: relative;
-      transition: background-color 0.3s ease;
-    }
-
-    button::after {
-      content: "🚀";
-      position: absolute;
-      right: -30px;
-      opacity: 0;
-      transition: right 0.4s ease, opacity 0.4s ease;
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: #004999;
     }
 
-    button:hover::after {
-      right: 10px;
-      opacity: 1;
-    }
-
-    .status-message {
-      margin: 15px 0;
-      padding: 10px;
-      font-weight: bold;
+    #responseMsg {
+      margin-top: 15px;
       text-align: center;
-      border-radius: 5px;
-      display: none;
-    }
-
-    .success {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-
-    .error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-
-    #loader {
-      text-align: center;
-      margin: 10px;
-      display: none;
       font-weight: bold;
+      color: #006600;
     }
   </style>
 </head>
 <body>
-  <div id="status" class="status-message"></div>
-  <div id="loader">⏳ جاري إرسال البيانات...</div>
+  <div class="form-container">
+    <h3>📋 تسجيل حكم جديد</h3>
+    <form id="refForm">
+      <label>Referee ID:</label>
+      <input type="text" name="RefereeID" required>
 
-  <form id="engagementForm">
-    <table>
-      <tr><th colspan="4">FICHE D’ENGAGEMENT ARBITRE / بطاقة الالتزام للحكم</th></tr>
-      <tr>
-        <td colspan="2">هل لديك رقم تحكيمي؟</td>
-        <td colspan="2">
-          <select id="hasCode" name="hasCode" onchange="toggleCodeField()" required>
-            <option value="">-- اختر --</option>
-            <option value="yes">نعم</option>
-            <option value="no">لا</option>
-          </select>
-        </td>
-      </tr>
-      <tr id="codeRow" style="display: none;">
-        <td colspan="2">رقمك التحكيمي:</td>
-        <td colspan="2"><input type="text" id="refCode" name="refCode" placeholder="مثال: ARB_0087"></td>
-      </tr>
-      <tr><td colspan="2">📷 صورة الحكم:</td><td colspan="2"><input type="file" name="refImage" accept="image/*"></td></tr>
-      <tr><td colspan="2">Nom / الاسم:</td><td colspan="2"><input type="text" name="fullName" required></td></tr>
-      <tr><td colspan="2">Prénom / اللقب:</td><td colspan="2"><input type="text" name="lastName"></td></tr>
-      <tr><td colspan="2">Date et lieu de naissance / تاريخ ومكان الميلاد:</td><td colspan="2"><input type="text" name="birthInfo"></td></tr>
-      <tr><td colspan="2">Situation familiale / الحالة العائلية:</td><td colspan="2"><input type="text" name="familyStatus"></td></tr>
-      <tr><td colspan="2">Adresse / العنوان:</td><td colspan="2"><input type="text" name="address"></td></tr>
-      <tr><td colspan="2">Mobile / الهاتف النقال:</td><td colspan="2"><input type="text" name="mobile"></td></tr>
-      <tr><td colspan="2">Email / البريد الإلكتروني:</td><td colspan="2"><input type="email" name="email"></td></tr>
-      <tr><td colspan="2">Niveau d'instruction / مستوى التعليم:</td><td colspan="2"><input type="text" name="education"></td></tr>
-      <tr><td colspan="2">Fonction / الوظيفة:</td><td colspan="2"><input type="text" name="job"></td></tr>
-      <tr><td colspan="4" class="section-title">Déclaration / التصريح</td></tr>
-      <tr><td colspan="4"><textarea name="declaration" rows="4" placeholder="نص التصريح..." required></textarea></td></tr>
-      <tr><td colspan="2">Fait à / حرر بـ:</td><td><input type="text" name="location"></td><td>le / في: <input type="date" name="date"></td></tr>
-      <tr><td colspan="4">Signature Arbitre / إمضاء الحكم: <input type="text" name="signature" required></td></tr>
-      <tr><td colspan="2">Avis du Président / رأي الرئيس:</td>
-          <td colspan="2">
-            <label><input type="radio" name="presidentOpinion" value="Favorable"> Favorable</label>
-            <label><input type="radio" name="presidentOpinion" value="Défavorable"> Défavorable</label>
-          </td></tr>
-      <tr><td colspan="2">Avis du DTRA / رأي المدير:</td>
-          <td colspan="2">
-            <label><input type="radio" name="dtraOpinion" value="Favorable"> Favorable</label>
-            <label><input type="radio" name="dtraOpinion" value="Défavorable"> Défavorable</label>
-          </td></tr>
-      <tr><td colspan="4" style="text-align:center;"><button type="submit">📤 إرسال / Envoyer</button></td></tr>
-    </table>
-  </form>
+      <label>Nom:</label>
+      <input type="text" name="Nom" required>
 
+      <label>Date de Naissance:</label>
+      <input type="date" name="DateNaissance" required>
+
+      <label>Mobile:</label>
+      <input type="text" name="Mobile" required>
+
+      <label>Email:</label>
+      <input type="email" name="Email" required>
+
+      <button type="submit">📤 إرسال</button>
+      <div id="responseMsg"></div>
+    </form>
+  </div>
+                     
   <script>
-    function toggleCodeField() {
-      const hasCode = document.getElementById("hasCode").value;
-      document.getElementById("codeRow").style.display = hasCode === "yes" ? "table-row" : "none";
-    }
-
-    function showMessage(type, message) {
-      const statusDiv = document.getElementById("status");
-      statusDiv.textContent = message;
-      statusDiv.className = `status-message ${type}`;
-      statusDiv.style.display = "block";
-      setTimeout(() => {
-        statusDiv.style.display = "none";
-      }, 6000);
-    }
-
-    document.getElementById("engagementForm").addEventListener("submit", function(e) {
+    document.getElementById("refForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
+      const formData = new FormData(this);
       const data = {};
-      formData.forEach((value, key) => data[key] = value);
+      formData.forEach((val, key) => { data[key] = val });
 
-      if (data["hasCode"] === "yes" && !data["refCode"]) {
-        showMessage("error", "⚠️ يرجى إدخال الرقم التحكيمي.");
-        return;
-      }
-
-      document.getElementById("loader").style.display = "block";
-
-      fetch("https://script.google.com/macros/s/AKfycbxx9QTFxvMZk021KnPZXzxWhBKoLH55ObXs_XXyosInni1jCj2KTqSQNpRcMPRsfpsW/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbzAC05BiMHwaDqWJ8dXPXQUsRvuI2TjC_4z_f6l_d9I_F6DNTdbbBNXMgRgbC_bST2O/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-      .then(() => {
-        document
+      .then(res => res.text())
+      .then(text => {
+        document.getElementById("responseMsg").innerText = text;
+        this.reset(); // إعادة تعيين النموذج بعد الإرسال
+      })
+      .catch(err => {
+        document.getElementById("responseMsg").innerText = "⚠️ حدث خطأ أثناء الإرسال";
+      });
+    });
+  </script>
+</body>
+</html>
