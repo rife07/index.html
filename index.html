@@ -1,117 +1,228 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تسجيل حكم جديد</title>
+  <title>خدمة المجلد الشخصي للحكام</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #f4f6f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
     }
 
-    .form-container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      width: 350px;
-    }
-
-    .form-container h3 {
-      margin-bottom: 20px;
-      color: #333;
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-      color: #555;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
+    .page {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      line-height: 1.8;
+      max-width: 800px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      position: absolute;
+      left: 0;
+      right: 0;
     }
 
-    button {
-      width: 100%;
-      background-color: #0066cc;
+    .page.active {
+      opacity: 1;
+      transform: translateY(0);
+      position: relative;
+    }
+
+    h2, h3 {
+      color: #2c3e50;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    ul, ol {
+      padding-right: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px 10px 0;
+      background-color: #3498db;
       color: #fff;
-      border: none;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #004999;
-    }
-
-    #responseMsg {
-      margin-top: 15px;
-      text-align: center;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
       font-weight: bold;
-      color: #006600;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    .green-btn {
+      background-color: #27ae60;
+    }
+
+    .green-btn:hover {
+      background-color: #219150;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 150px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #eee;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: #3498db;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .page {
+        padding: 15px;
+      }
+
+      h2, h3 {
+        font-size: 20px;
+      }
+
+      p, li {
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 8px 14px;
+        font-size: 14px;
+      }
+
+      .logo {
+        max-width: 100px;
+        margin-bottom: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h3>📋 تسجيل حكم جديد</h3>
-    <form id="refForm">
-      <label>Referee ID:</label>
-      <input type="text" name="RefereeID" required>
 
-      <label>Nom:</label>
-      <input type="text" name="Nom" required>
+  <!-- الصفحة 1 -->
+  <div id="page1" class="page active">
+    <div class="progress-bar"><div class="progress-fill" id="progress1"></div></div>
+    <img src="https://via.placeholder.com/150x80?text=Logo" alt="شعار الحكام" class="logo">
+    <h2>📂 خدمة المجلد الشخصي للحكام</h2>
+    <p>يسر الرابطة أن تقدم خدمة رقمية جديدة للحكام، تتيح لكل حكم مجلدًا شخصيًا خاصًا به، يُستخدم لتبادل الملفات والوثائق المطلوبة بشكل آمن ومنظم.</p>
 
-      <label>Date de Naissance:</label>
-      <input type="date" name="DateNaissance" required>
+    <h3>📘 فوائد استخدام مجلدك الشخصي:</h3>
+    <ul>
+      <li>سهولة إرسال واستقبال الملفات المطلوبة من الرابطة.</li>
+      <li>إمكانية تجديد الملف أو إضافة وثائق مستقبلية دون الحاجة للحضور.</li>
+      <li>تنظيم الملفات في مكان واحد وآمن.</li>
+      <li>تسريع الإجراءات الإدارية وتقليل الاعتماد على الورق.</li>
+      <li>حماية خصوصيتك ومنع الوصول غير المصرّح به.</li>
+    </ul>
 
-      <label>Mobile:</label>
-      <input type="text" name="Mobile" required>
-
-      <label>Email:</label>
-      <input type="email" name="Email" required>
-
-      <button type="submit">📤 إرسال</button>
-      <div id="responseMsg"></div>
-    </form>
+    <div class="btn" onclick="goToPage(2)">التالي ⏭️</div>
   </div>
-                     
-  <script>
-    document.getElementById("refForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const data = {};
-      formData.forEach((val, key) => { data[key] = val });
 
-      fetch("https://script.google.com/macros/s/AKfycbzAC05BiMHwaDqWJ8dXPXQUsRvuI2TjC_4z_f6l_d9I_F6DNTdbbBNXMgRgbC_bST2O/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(res => res.text())
-      .then(text => {
-        document.getElementById("responseMsg").innerText = text;
-        this.reset(); // إعادة تعيين النموذج بعد الإرسال
-      })
-      .catch(err => {
-        document.getElementById("responseMsg").innerText = "⚠️ حدث خطأ أثناء الإرسال";
-      });
+  <!-- الصفحة 2 -->
+  <div id="page2" class="page">
+    <div class="progress-bar"><div class="progress-fill" id="progress2"></div></div>
+    <img src="https://via.placeholder.com/150x80?text=Logo" alt="شعار الحكام" class="logo">
+    <h3>🧭 كيف تبدأ باستخدام مجلدك الشخصي لأول مرة؟</h3>
+    <ul style="list-style: none; padding-right: 0;">
+      <li>📞 <strong>تواصل مع مصلحة الرقمنة</strong> للحصول على رابط مجلدك الشخصي الخاص بك.</li>
+      <li>📩 <strong>سيتم إرسال الرابط</strong> إليك عبر البريد الإلكتروني أو رسالة مباشرة من الرابطة.</li>
+      <li>🔒 <strong>احتفظ بالرابط</strong> في مكان آمن ولا تشاركه مع أي شخص.</li>
+      <li>🌐 <strong>افتح الرابط</strong> في متصفحك لعرض مجلدك وبدء رفع الملفات المطلوبة.</li>
+      <li>🛠️ <strong>في حال وجود مشكلة</strong> اتصل بمسؤول الرقمنة على الرقم <strong>1234567890</strong>.</li>
+    </ul>
+
+    <div class="btn" onclick="goToPage(1)">🔙 رجوع</div>
+    <div class="btn" onclick="goToPage(3)">التالي ⏭️</div>
+  </div>
+
+  <!-- الصفحة 3 -->
+  <div id="page3" class="page">
+    <div class="progress-bar"><div class="progress-fill" id="progress3"></div></div>
+    <img src="https://via.placeholder.com/150x80?text=Logo" alt="شعار الحكام" class="logo">
+    <h3>📢 تعليمات استخدام المجلد الشخصي</h3>
+    <p>يرجى اتباع الخطوات التالية لضمان إرسال الملفات بشكل صحيح:</p>
+    <ol>
+      <li>افتح مجلدك الشخصي الذي سيتم تحويلك إليه بعد الضغط على "موافق، افتح مجلدي".</li>
+      <li>لإرسال ملف:
+        <ul>
+          <li>اضغط على زر تحميل واختر الملف المطلوب</li>
+          <li>تأكد من رفعه في المجلد الصحيح</li>
+        </ul>
+      </li>
+      <li>لالتقاط صورة طبق الأصل من ملف ورقي:
+        <ul>
+          <li>استخدم كاميرا الهاتف في مكان مضاء جيدًا</li>
+          <li>ضع الملف على سطح مستوٍ</li>
+          <li>التقط الصورة من الأعلى بحيث تكون الحواف واضحة</li>
+          <li>تأكد من أن النص ظاهر بوضوح قبل الإرسال</li>
+        </ul>
+      </li>
+      <li>لا تقم بتعديل اسم الملف إلا إذا طُلب منك ذلك.</li>
+      <li>لا تشارك رابط المجلد مع أي شخص آخر.</li>
+    </ol>
+
+    <p><strong>📌 ملاحظة:</strong> الملفات مخصصة لك فقط.</p>
+    <p><strong>🚫 تنبيه:</strong> لا تشارك رابط مجلدك مع أي شخص غير مؤهل لضمان أمن وحماية ملفاتك.</p>
+    <p><strong>📞 للتوضيح أو التأكد:</strong> يرجى الاتصال بمسؤول الرقمنة على الرقم <strong>1234567890</strong></p>
+
+    <div class="btn" onclick="goToPage(2)">🔙 رجوع</div>
+    <a href="https://your-folder-link.com" class="btn green-btn">✅ موافق، افتح مجلدي</a>
+  </div>
+
+  <script>
+    function goToPage(pageNumber) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + pageNumber).classList.add('active');
+      updateProgress(pageNumber);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress(pageNumber) {
+      const fills = {
+        1: document.getElementById('progress1'),
+        2: document.getElementById('progress2'),
+        3: document.getElementById('progress3')
+      };
+      Object.values(fills).forEach(f => f.style.width = '0%');
+      if (fills[pageNumber]) {
+        if (pageNumber === 1) fills[pageNumber].style.width = '33%';
+        else if (pageNumber === 2) fills[pageNumber].style.width = '66%';
+        else if (pageNumber === 3) fills[pageNumber].style.width = '100%';
+      }
+    }
+
+    // عند تحميل الصفحة لأول مرة
+    document.addEventListener('DOMContentLoaded', () => {
+      updateProgress(1);
     });
   </script>
-</body>
-</html>
